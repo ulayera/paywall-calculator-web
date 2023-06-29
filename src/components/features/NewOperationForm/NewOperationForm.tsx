@@ -163,7 +163,7 @@ export default function NewOperationForm() {
                       <tr>
                         <th>
                           <p className="text-capitalize">
-                            {result?.operation.toLowerCase()}
+                            {result?.operation.replace('_',' ').toLowerCase()}
                           </p>
                         </th>
                         <td>{result?.operands.join(",")}</td>

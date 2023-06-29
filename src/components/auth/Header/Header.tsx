@@ -36,9 +36,10 @@ export default function Header() {
                   <i className="bi bi-calculator fs-2"></i>
                 </Link>
                 <div className="navbar-nav">
-                  {menuItems.map((item) => {
+                  {menuItems.map((item, index) => {
                     return (
                       <Link
+                      key={index}
                         to={item.path}
                         className={`
                           nav-link px-2 
