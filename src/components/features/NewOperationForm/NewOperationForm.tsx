@@ -87,7 +87,7 @@ export default function NewOperationForm() {
 
             {/* operands */}
             {operands.map((_, index) => (
-              <div className="row justify-content-center">
+              <div className="row justify-content-center" key={index}>
                 <div className="pt-3 col-sm-5 col-10">
                   <input
                     type="number"
@@ -101,16 +101,18 @@ export default function NewOperationForm() {
                     value={operands[index]}
                   />
                 </div>
+                {/* remove operand */}
                 <div className="pt-3 col-sm-1 col-2">
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                     onClick={() => {
                       setOperands([
                         ...operands.slice(0, index),
                         ...operands.slice(index + 1),
                       ]);
                     }}
+                    disabled={operands.length < 2}
                   >
                     -
                   </button>
@@ -123,7 +125,7 @@ export default function NewOperationForm() {
               <div className="p-3 col-md-6">
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-secondary"
                   onClick={() => setOperands([...operands, 0])}
                 >
                   Add operand

@@ -3,9 +3,7 @@ const baseArithmeticOperationsUrl = `${baseUrl}/v1/arithmetic-operations`;
 
 const headers = {
   "Content-Type": "application/json",
-  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVsYXllcmEiLCJpYXQiOjE2ODc5NjEwMzksImV4cCI6MTY5MzE0NTAzOX0.VuZN5jVOgbhOmrqncSlbH9XNQYphdnSn5T7WHbqmeZE"
-
-  //"Authorization": `Bearer ${localStorage.getItem("token")?.trim()}`,
+  "Authorization": `Bearer ${localStorage.getItem("token")?.trim()}`,
 };
 export const addition = (operands: Array<number>): Promise<any> => {
   return fetch(`${baseArithmeticOperationsUrl}/addition`, {

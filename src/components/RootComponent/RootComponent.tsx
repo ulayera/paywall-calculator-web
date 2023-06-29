@@ -1,31 +1,36 @@
-import {
-  Navigate,
-  Outlet,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
-import { useAuth } from "../../services/auth-provider.service";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Auth from "../auth/AuthForm/AuthForm";
 import { AuthProvider } from "../auth/AuthProvider/AuthProvider";
+import AuthStatus from "../auth/Header/Header";
+import RequireAuth from "../auth/RequireAuth/RequireAuth";
 import NewOperationForm from "../features/NewOperationForm/NewOperationForm";
+import UserRecords from "../features/UserRecords/UserRecords";
+import Home from "../auth/Home/Home";
 
 export default function Root() {
   return (
     <AuthProvider>
       <Routes>
         <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Auth type={"login"} />} />
+          <Route path="/register" element={<Auth type={"register"} />} />
           <Route
-            path="/"
+            path="/arithmetic-operations"
             element={
               <RequireAuth>
                 <NewOperationForm />
               </RequireAuth>
             }
           />
-          <Route path="/login" element={<Auth type={"login"} />} />
-          <Route path="/register" element={<Auth type={"register"} />} />
+          <Route
+            path="/user-records"
+            element={
+              <RequireAuth>
+                <UserRecords />
+              </RequireAuth>
+            }
+          />
         </Route>
       </Routes>
     </AuthProvider>
@@ -34,48 +39,17 @@ export default function Root() {
 
 function Layout() {
   return (
-    <div className="container text-center">
+    <div className="container-fluid text-center">
       <div className="row justify-content-center">
         <AuthStatus />
-        <Outlet />
+        <div className="col">
+          <div className="container-fluid text-center">
+            <div className="row justify-content-center">
+              <Outlet />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
-
-function AuthStatus() {
-  let auth = useAuth();
-  let navigate = useNavigate();
-
-  if (!auth.token) {
-    return <p>You are not logged in.</p>;
-  }
-
-  return (
-    <p>
-      Welcome user!{" "}
-      <button
-        onClick={() => {
-          auth.signout(() => navigate("/"));
-        }}
-      >
-        Sign out
-      </button>
-    </p>
-  );
-}
-
-function RequireAuth({ children }: { children: JSX.Element }) {
-  let auth = useAuth();
-  let location = useLocation();
-
-  if (!auth.token) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to when they were redirected. This allows us to send them
-    // along to that page after they login, which is a nicer user experience
-    // than dropping them off on the home page.
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  return children;
 }
