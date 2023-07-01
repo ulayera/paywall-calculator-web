@@ -1,5 +1,6 @@
-const baseUrl = "http://localhost:3000";
-const baseAuthUrl = `${baseUrl}/v1/auth`;
+import { BASE_URL } from "./constants";
+
+const baseAuthUrl = `${BASE_URL}/v1/auth`;
 
 export const login = (username: string, password: string): Promise<any> => {
   return fetch(`${baseAuthUrl}/login`, {

@@ -1,5 +1,6 @@
-const baseUrl = "http://localhost:3000";
-const baseArithmeticOperationsUrl = `${baseUrl}/v1/arithmetic-operations`;
+import { BASE_URL } from "./constants";
+
+const baseArithmeticOperationsUrl = `${BASE_URL}/v1/arithmetic-operations`;
 
 const headers = {
   "Content-Type": "application/json",

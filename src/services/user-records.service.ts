@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3000";
+
 const baseUserRecUrl = `${baseUrl}/v1/records`;
 
 export const getUserRecords = (): Promise<any> => {
