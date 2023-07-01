@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://ulayera.github.io/paywall-calculator-web",
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "npm run build -- --minify false",
     "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "tsc && vite build --outDir build",
