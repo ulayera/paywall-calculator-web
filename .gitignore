@@ -9,7 +9,7 @@ dist-ssr
 *.sw?
 
 # compiled output
-/dist
+!/dist
 /node_modules
 package-lock.json
 
