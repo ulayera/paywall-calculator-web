@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { login } from "../../../services/auth.service";
 import { AuthContext } from "../../../services/auth-provider.service";
 
@@ -9,7 +9,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     console.log('AuthProvider.signin');
     return login(user, pass).then(async (data) => {
       if (data.hasOwnProperty("access_token")) {
-        //let result = jwt(token);
         setToken(data.access_token);
         localStorage.setItem("token", data.access_token);
       }

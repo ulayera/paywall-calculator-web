@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import Auth from "../auth/AuthForm/AuthForm";
 import { AuthProvider } from "../auth/AuthProvider/AuthProvider";
-import AuthStatus from "../auth/Header/Header";
+import Header from "../auth/Header/Header";
 import RequireAuth from "../auth/RequireAuth/RequireAuth";
 import NewOperationForm from "../features/NewOperationForm/NewOperationForm";
 import UserRecords from "../features/UserRecords/UserRecords";
@@ -41,7 +41,7 @@ function Layout() {
   return (
     <div className="container-fluid text-center">
       <div className="row justify-content-center">
-        <AuthStatus />
+        <Header />
         <div className="col">
           <div className="container-fluid text-center">
             <div className="row justify-content-center">
