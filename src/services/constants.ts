@@ -1,1 +1,1 @@
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://6xssotns5j.execute-api.us-east-1.amazonaws.com/api";

@@ -1,5 +1,6 @@
+import { BASE_URL } from "./constants";
 
-const baseUserRecUrl = `${baseUrl}/v1/records`;
+const baseUserRecUrl = `${BASE_URL}/v1/records`;
 
 export const getUserRecords = (): Promise<any> => {
   return fetch(`${baseUserRecUrl}`, {

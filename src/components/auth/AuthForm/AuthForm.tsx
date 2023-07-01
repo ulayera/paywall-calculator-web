@@ -16,8 +16,6 @@ export default function Auth({ type }: any) {
   const handleEmail = (event: any) => setEmail(event?.target?.value);
   const handlePass = (event: any) => setPass(event?.target?.value);
   const handleSubmit = () => {
-    email = 'ulayera';
-    pass = 'changeme';
     if (email && pass) {
       auth.signin(email, pass, () => {
         navigate(from);
