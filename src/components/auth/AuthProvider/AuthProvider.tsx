@@ -1,9 +1,9 @@
-import React from "react";
+import { useState } from "react";
 import { login } from "../../../services/auth.service";
 import { AuthContext } from "../../../services/auth-provider.service";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  let [token, setToken] = React.useState<any>(localStorage.getItem('token'));
+  let [token, setToken] = useState<any>(localStorage.getItem('token'));
 
   const signin = (user: string, pass: string, callback: VoidFunction) => {
     console.log('AuthProvider.signin');
