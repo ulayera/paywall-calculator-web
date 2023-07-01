@@ -379,12 +379,11 @@ react_production_min.version = "18.2.0";
   react.exports = react_production_min;
 }
 var reactExports = react.exports;
-const React$1 = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
-const React$2 = /* @__PURE__ */ _mergeNamespaces({
+const index$1 = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
+const React$1 = /* @__PURE__ */ _mergeNamespaces({
   __proto__: null,
-  default: React$1
+  default: index$1
 }, [reactExports]);
-var client = {};
 var reactDom = { exports: {} };
 var reactDom_production_min = {};
 var scheduler = { exports: {} };
@@ -7602,10 +7601,11 @@ function checkDCE() {
   reactDom.exports = reactDom_production_min;
 }
 var reactDomExports = reactDom.exports;
+var createRoot;
 var m = reactDomExports;
 {
-  client.createRoot = m.createRoot;
-  client.hydrateRoot = m.hydrateRoot;
+  createRoot = m.createRoot;
+  m.hydrateRoot;
 }
 const index = "";
 const bootstrap = "";
@@ -8798,7 +8798,7 @@ function shouldProcessLinkClick(event, target) {
 }
 const _excluded = ["onClick", "relative", "reloadDocument", "replace", "state", "target", "to", "preventScrollReset"];
 const START_TRANSITION = "startTransition";
-const startTransitionImpl = React$2[START_TRANSITION];
+const startTransitionImpl = React$1[START_TRANSITION];
 function BrowserRouter(_ref) {
   let {
     basename,
@@ -9007,7 +9007,7 @@ const login = (username, password) => {
   });
 };
 function AuthProvider({ children }) {
-  let [token, setToken] = React$1.useState(localStorage.getItem("token"));
+  let [token, setToken] = reactExports.useState(localStorage.getItem("token"));
   const signin = (user, pass, callback) => {
     console.log("AuthProvider.signin");
     return login(user, pass).then(async (data) => {
@@ -9025,7 +9025,7 @@ function AuthProvider({ children }) {
     callback();
   };
   let value = { token, signin, signout };
-  return /* @__PURE__ */ React$1.createElement(AuthContext.Provider, { value }, children);
+  return /* @__PURE__ */ React.createElement(AuthContext.Provider, { value }, children);
 }
 function Header() {
   const auth = useAuth();
@@ -12375,6 +12375,6 @@ const require$$0 = /* @__PURE__ */ getAugmentedNamespace(lib);
     return V2(is), b(is), { Alert: Q2, Button: Y2, Carousel: ct, Collapse: mt, Dropdown: xt, Modal: ne2, Offcanvas: _e, Popover: Me2, ScrollSpy: Be2, Tab: Ge2, Toast: is, Tooltip: Ne2 };
   });
 })(bootstrap_min);
-client.createRoot(document.getElementById("root")).render(
-  /* @__PURE__ */ React$1.createElement(React$1.StrictMode, null, /* @__PURE__ */ React$1.createElement(BrowserRouter, null, /* @__PURE__ */ React$1.createElement(Root, null)))
+createRoot(document.getElementById("root")).render(
+  /* @__PURE__ */ React.createElement(reactExports.StrictMode, null, /* @__PURE__ */ React.createElement(BrowserRouter, null, /* @__PURE__ */ React.createElement(Root, null)))
 );
