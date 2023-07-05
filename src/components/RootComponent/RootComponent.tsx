@@ -13,8 +13,8 @@ export default function Root() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Auth type={"login"} />} />
-          <Route path="/register" element={<Auth type={"register"} />} />
+          <Route path="/login" element={<Auth formType={"login"} />} />
+          <Route path="/register" element={<Auth formType={"register"} />} />
           <Route
             path="/arithmetic-operations"
             element={

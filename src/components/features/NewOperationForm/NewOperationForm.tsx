@@ -8,12 +8,21 @@ import {
   subtraction,
 } from "../../../services/arithmetic-operation.service";
 
+type OperationResult = {
+  operation?: string;
+  operands?: number[];
+  value: string;
+  balanceLeft: string;
+}
+
 export default function NewOperationForm() {
-  const handleOperation = (event: any) => setOperation(event?.target?.value);
-  const [operation, setOperation] = useState(null as any);
-  const [error, setError] = useState(null as any);
+  const handleChange = (event: React.FormEvent<HTMLSelectElement>) => {
+    setOperation(event.currentTarget.value);
+  };
+  const [operation, setOperation] = useState(undefined as string | undefined);
+  const [error, setError] = useState(undefined as string | undefined);
   const [operands, setOperands] = useState([0]);
-  const [result, setResult] = useState(null as any);
+  const [result, setResult] = useState(undefined as OperationResult | undefined);
   const [lock, setLock] = useState(false);
 
   const performOperation = () => {
@@ -21,7 +30,7 @@ export default function NewOperationForm() {
       return;
     }
     setLock(true);
-    setError(null);
+    setError(undefined);
     let promise;
     switch (operation) {
       case "ADDITION":
@@ -72,7 +81,7 @@ export default function NewOperationForm() {
                 <select
                   id="operation"
                   className="form-select border-secondary-subtle"
-                  onChange={handleOperation}
+                  onChange={handleChange}
                 >
                   <option value="">- Choose an operation -</option>
                   <option value="ADDITION">Addition</option>
@@ -94,7 +103,7 @@ export default function NewOperationForm() {
                     className="form-control border-secondary-subtle"
                     id={"operand-" + index}
                     onChange={(event) => {
-                      let newOperands = [...operands];
+                      const newOperands = [...operands];
                       newOperands[index] = parseInt(event.target.value);
                       setOperands(newOperands);
                     }}
@@ -163,10 +172,10 @@ export default function NewOperationForm() {
                       <tr>
                         <th>
                           <p className="text-capitalize">
-                            {result?.operation.replace('_',' ').toLowerCase()}
+                            {result?.operation?.replace('_',' ').toLowerCase()}
                           </p>
                         </th>
-                        <td>{result?.operands.join(",")}</td>
+                        <td>{result?.operands?.join(",")}</td>
                         <td>{result?.value}</td>
                         <td>{result?.balanceLeft}</td>
                       </tr>

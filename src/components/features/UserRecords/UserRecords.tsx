@@ -1,12 +1,24 @@
 import { useEffect, useState } from "react";
 import { getUserRecords } from "../../../services/user-records.service";
 
+type UserRecord = {
+  id: number;
+  user: {
+    id: number;
+    username: string;
+  };
+  operation: string;
+  amount: number;
+  operationResponse: number;
+  userBalance: number;
+  date: Date;
+};
 export default function UserRecords() {
-  const [error, setError] = useState(null as any);
-  const [records, setRecords] = useState(null as unknown as any[]);
+  const [error, setError] = useState(undefined as string | undefined);
+  const [records, setRecords] = useState(undefined as UserRecord[] | undefined);
 
   useEffect(() => {
-    setError(null);
+    setError(undefined);
     getUserRecords()
       .then((data) => {
         setRecords(data);
@@ -36,14 +48,16 @@ export default function UserRecords() {
             <tbody>
               {records?.map((record, index) => (
                 <tr key={index}>
-                <th>{record.id}</th>
-                <td>{record.user?.username}</td>
-                <td><p className="text-capitalize">{record.operation?.replace('_',' ').toLowerCase()}</p></td>
-                <td>{record.amount}</td>
-                <td>{record.operationResponse}</td>
-                <td>{record.userBalance}</td>
-                <td>{new Date(record.date).toUTCString()}</td>
-              </tr>
+                  <th>{record.id}</th>
+                  <td>{record.user?.username}</td>
+                  <td>
+                    <p className="text-capitalize">{record.operation?.replace("_", " ").toLowerCase()}</p>
+                  </td>
+                  <td>{record.amount}</td>
+                  <td>{record.operationResponse}</td>
+                  <td>{record.userBalance}</td>
+                  <td>{new Date(record.date).toUTCString()}</td>
+                </tr>
               ))}
             </tbody>
           </table>

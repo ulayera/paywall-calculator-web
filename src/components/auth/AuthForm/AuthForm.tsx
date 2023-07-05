@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../../../services/auth-provider.service";
+import { useAuth } from "../../../services/auth-context.service";
 
-export default function Auth({ type }: any) {
-  let [email, setEmail] = useState("");
-  let [pass, setPass] = useState("");
-  let [error, setError] = useState("");
+type AuthProps = {
+  formType: "login" | "register";
+};
+
+export default function Auth({ formType }: AuthProps): JSX.Element {
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [error, setError] = useState("");
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,8 +17,8 @@ export default function Auth({ type }: any) {
   
   const from = location.state?.from?.pathname || "/";
   
-  const handleEmail = (event: any) => setEmail(event?.target?.value);
-  const handlePass = (event: any) => setPass(event?.target?.value);
+  const handleEmail = (event: React.FormEvent<HTMLInputElement>) => setEmail(event?.currentTarget?.value);
+  const handlePass = (event: React.FormEvent<HTMLInputElement>) => setPass(event?.currentTarget?.value);
   const handleSubmit = () => {
     if (email && pass) {
       auth.signin(email, pass, () => {
@@ -30,7 +34,7 @@ export default function Auth({ type }: any) {
       <div className="card bg-body-secondary">
         <div className="card-body">
           <h1 className="text-center">
-            {type === "login" ? "Sign in" : "Sign up"}
+            {formType === "login" ? "Sign in" : "Sign up"}
           </h1>
           <div className="container text-center">
             <form>
@@ -76,7 +80,7 @@ export default function Auth({ type }: any) {
               )}
               <div className="row p-3 justify-content-center">
                 <div className="col-md-6">
-                  {(type === "login" && (
+                  {(formType === "login" && (
                     <span>
                       First time here? <a href={"/register"}>Sign up</a>
                     </span>

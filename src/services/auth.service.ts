@@ -1,6 +1,5 @@
-import { BASE_URL } from "./constants";
 
-const baseAuthUrl = `${BASE_URL}/v1/auth`;
+const baseAuthUrl = `${process.env.REACT_APP_BASE_URL}/v1/auth`;
 
 export const login = (username: string, password: string): Promise<any> => {
   return fetch(`${baseAuthUrl}/login`, {
