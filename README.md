@@ -22,7 +22,7 @@ Didn't have enough time to invest on this so I just tested one file as a showcas
 
 ```bash
 # unit tests
-$ npm test -- src/auth/auth.guard.spec.ts
+$ npm test -- src/components/features/NewOperationForm/NewOperationForm.spec.tsx
 
 # test coverage
 $ npm run test:cov
