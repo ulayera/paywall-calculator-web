@@ -12,13 +12,13 @@ $ npm install
 
 ```bash
 # development
-$ npx vite dev
+$ npm start
 
 ```
 
 ## Test
 
-Didn't have enough time to invest on this so I just tested one file as a showcase of how to test under the nestjs DI
+Didn't have enough time to invest on this so I just tested one file as a showcase of how to test React
 
 ```bash
 # unit tests
