@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://ulayera.github.io/paywall-calculator-web/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
