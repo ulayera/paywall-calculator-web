@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../../../services/auth-context.service";
 
 type AuthProps = {
@@ -82,11 +82,11 @@ export default function Auth({ formType }: AuthProps): JSX.Element {
                 <div className="col-md-6">
                   {(formType === "login" && (
                     <span>
-                      First time here? <a href={"/register"}>Sign up</a>
+                      First time here? <Link to="/register">Sign up</Link>
                     </span>
                   )) || (
                     <span>
-                      Already registered? <a href={"/login"}>Sign in</a>
+                      Already registered? <Link to="/login">Sign in</Link>
                     </span>
                   )}
                 </div>
